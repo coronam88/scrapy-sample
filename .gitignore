@@ -1,0 +1,17 @@
+venv
+scrapvenv
+
+.env*
+!.env.example
+
+**/output/*
+
+*pyc
+*.pem
+
+__pycache__
+
+services/**/data/*
+
+*.log
+services

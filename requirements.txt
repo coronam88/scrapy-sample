@@ -1,0 +1,9 @@
+scrapy==2.6.2
+scrapy-playwright==0.0.20
+scrapy-rotating-proxies==0.6.2
+pymongo==4.1.1
+redis==4.1.2
+celery==5.2.6
+scrapyscript==1.1.5
+python-dotenv==0.20.0
+pyOpenSSL==22.0.0
