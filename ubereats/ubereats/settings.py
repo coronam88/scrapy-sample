@@ -10,7 +10,6 @@
 from dotenv import dotenv_values 
 import os
 
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 config = dotenv_values(os.path.join(basedir, '../../.env'))
 
@@ -18,7 +17,6 @@ BOT_NAME = 'ubereats'
 
 SPIDER_MODULES = ['ubereats.spiders']
 NEWSPIDER_MODULE = 'ubereats.spiders'
-
 
 # playwrights specific stuff
 DOWNLOAD_HANDLERS = {
@@ -33,8 +31,9 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 #USER_AGENT = 'ubereats (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
+PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": False}
 
 # Mongo stuff
 MONGODB_SERVER = config.get("MONGODB_SERVER")
@@ -129,3 +128,5 @@ USER_AGENTS_LIST = [
 'Mozilla/5.0 (Linux; Android 5.0.1; SM-N910S) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.105 Mobile Safari/537.36',
 'Mozilla/5.0 (Linux; Android 6.0.1; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36',
 'Mozilla/5.0 (Linux; Android 9; SM-G950F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4530.6 Mobile Safari/537.36']
+
+# LOG_LEVEL="DEBUG"

@@ -15,3 +15,5 @@ services/**/data/*
 
 *.log
 services
+
+*.json
