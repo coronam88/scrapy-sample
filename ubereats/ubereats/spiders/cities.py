@@ -9,7 +9,7 @@ class CitiesSpider(scrapy.Spider):
     BASE_URL='https://ubereats.com'
 
     def start_requests(self):
-        url = 'https://www.ubereats.com/city/albany-wi'
+        url = 'https://www.ubereats.com/city/adamsville-al'
 
         yield scrapy.Request(
             url = url,
@@ -20,8 +20,6 @@ class CitiesSpider(scrapy.Spider):
         )
     
     async def parse(self, response):    
-        print("metaaaaaaaaaaaa", response.meta)
-        return
         for city in response.css('div.hj.ic.id'):
             store_name = city.css('h3.ie.dc.ae.cd::text').get()
             store_address = city.css('span.ba.bx.dj.c5.in.eb.ci.cg::text').get()
