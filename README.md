@@ -5,6 +5,9 @@
 3. Execute playwright install
 4. Start crawling!
 
+### Crawlers
+scrapy crawl stores -o output_file.json
+
 -------------------------------------------------------------------------------------------------
 ### RoadMap
 Spiders:
