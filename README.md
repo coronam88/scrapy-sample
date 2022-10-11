@@ -1,3 +1,12 @@
+### Getting Started
+
+1. Create a venv and activate
+2. Install dependeces (requirements-dev.txt)
+3. Execute playwright install
+4. Start crawling!
+
+-------------------------------------------------------------------------------------------------
+### RoadMap
 Spiders:
 
 1. Location

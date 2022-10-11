@@ -2,7 +2,7 @@
     "python.formatting.provider": "yapf",
     "files.exclude": {
         "**/__pycache__": true,
-        "venv": true
+        "venv": false
       },
     "window.title": "Ubereats",
     "workbench.colorCustomizations": {
