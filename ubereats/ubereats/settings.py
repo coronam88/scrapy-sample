@@ -7,10 +7,26 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+from dotenv import dotenv_values 
+import os
+
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+config = dotenv_values(os.path.join(basedir, '../../.env'))
+
 BOT_NAME = 'ubereats'
 
 SPIDER_MODULES = ['ubereats.spiders']
 NEWSPIDER_MODULE = 'ubereats.spiders'
+
+
+# playwrights specific stuff
+DOWNLOAD_HANDLERS = {
+    'http': 'scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler',
+    'https': 'scrapy_playwright.handler.ScrapyPlaywrightDownloadHandler',
+}
+
+TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -18,6 +34,16 @@ NEWSPIDER_MODULE = 'ubereats.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+
+
+# Mongo stuff
+MONGODB_SERVER = config.get("MONGODB_SERVER")
+MONGODB_PORT = config.get("MONGODB_PORT")
+MONGO_INITDB = config.get("MONGO_INITDB_DATABASE")
+MONGODB_COLLECTION = config.get("MONGODB_COLLECTION")
+MONGO_INITDB_ROOT_USERNAME=config.get("MONGO_INITDB_ROOT_USERNAME")
+MONGO_INITDB_ROOT_PASSWORD=config.get("MONGO_INITDB_ROOT_PASSWORD")
+MONGO_PATH_TLS_PEM=config.get("PATH_TLS_PEM")
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

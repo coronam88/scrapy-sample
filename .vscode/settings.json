@@ -1,0 +1,12 @@
+{
+    "python.formatting.provider": "yapf",
+    "files.exclude": {
+        "**/__pycache__": true,
+        "venv": true
+      },
+    "window.title": "Ubereats",
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#ff8000",
+      "titleBar.activeForeground": "#000000"
+    }
+}
