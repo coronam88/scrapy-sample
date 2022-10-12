@@ -33,7 +33,7 @@ TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
 
-PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": False}
+PLAYWRIGHT_LAUNCH_OPTIONS = {"headless": True}
 
 # Mongo stuff
 MONGODB_SERVER = config.get("MONGODB_SERVER")
@@ -129,4 +129,4 @@ USER_AGENTS_LIST = [
 'Mozilla/5.0 (Linux; Android 6.0.1; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36',
 'Mozilla/5.0 (Linux; Android 9; SM-G950F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4530.6 Mobile Safari/537.36']
 
-# LOG_LEVEL="DEBUG"
+LOG_LEVEL="INFO"
