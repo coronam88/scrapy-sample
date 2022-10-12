@@ -9,8 +9,8 @@ class StoresSpider(scrapy.Spider):
 
 
     def start_requests(self):
-        # url = 'https://www.ubereats.com/store/subway-2473-hackworth-rd/fzEDE5hrV9uCv1fHwW17Fw'
-        url = 'https://www.ubereats.com/store/dam-near-home/u8cEPsZ2XxiI5uxdDYIs1Q'
+        url = 'https://www.ubereats.com/store/subway-2473-hackworth-rd/fzEDE5hrV9uCv1fHwW17Fw'
+        # url = 'https://www.ubereats.com/store/dam-near-home/u8cEPsZ2XxiI5uxdDYIs1Q'
 
         yield scrapy.Request(
             url = url,
@@ -22,59 +22,35 @@ class StoresSpider(scrapy.Spider):
     async def parse(self, response):
         page = response.meta["playwright_page"]
         await page.close()
-
-        # main_div = response.css('div.d6')
-        # main_div = response.xpath('//*[@id="main-content"]/div[4]/div/div[4]')
-        # print("MAIN_DIV",len(main_div))
-        # main_ul = main_div.css('ul')
-        # main_ul = response.xpath('//*[@id="main-content"]/div[4]/div/div[4]/ul')
-        # print("MAIN_UL",len(main_ul))
-
                 
         # One li per product_category
         cat_list=[]
-        print(len(response.xpath(f'//*[@id="main-content"]/div[4]/div/div[4]/ul/li')))
+        # print(len(response.xpath(f'//*[@id="main-content"]/div[4]/div/div[4]/ul/li')))
         lis = None
         for cat in response.xpath(f'//*[@id="main-content"]/div[4]/div/div[4]/ul/li'):
             print("########### CATEGORY")
-            lis = cat.css('li').getall()
-            print(lis[0].css('ul'))
+            category_name = cat.css('div::text').get()
+            lis = cat.css('li ul li')
+            for li in lis:
+                prod = {}
+                # print(li.css('span::text').getall())
+                prod["product_name"] = " ".join(re.findall(r"[a-zA-Z]+", li.css('span::text').getall()[0]))
+                prod["product_category"] = " ".join(re.findall(r"[a-zA-Z]+",category_name))
+                prod["price"] = re.findall(r"[\.0-9]*$", li.css('span::text').getall()[1])[0]
 
-       
+                try:
+                    prod["product_description"] = " ".join(re.findall(r"[a-zA-Z]+", li.css('span::text').getall()[2]))
+                except:
+                    prod["prod_description"] = ""
+                try:
+                    # print(li.css('picture img').attrib['src'])
+                    prod["photo"] = li.css('picture source').attrib['srcset']
+                except:
+                    # print("no photo")
+                    prod["photo"] = ""
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            # category_name = cat.css('div::text').get()
-            # prods = cat.css('span::text').getall()            
-            # for i, prod in enumerate(prods):
-            #     prod_dict = {}
-            #     try:
-            #         if i % 2 == 0:
-            #             # TODO: url de la imagen y url del producto en si
-            #             prod_dict["product_name"] = " ".join(re.findall(r"[a-zA-Z]+",prods[i]))
-            #             prod_dict["price"] = re.findall(r"[\.0-9]*$", prods[i+1])[0]
-            #             prod_dict["product_category"] = " ".join(re.findall(r"[a-zA-Z]+",category_name))
-                        
-            #             yield prod_dict
-            #     except:
-            #         print("#################### ERROR")
-
-        
-       
+                yield prod       
             
   
         """store_name
